@@ -5,13 +5,13 @@ using std::vector;
 using std::cin;
 using std::cout;
 
-int MaxPairwiseProduct(const vector<int>& numbers) {
-  int result = 0;
+long long MaxPairwiseProduct(const vector<int>& numbers) {
+  long long result = 0;
   int n = numbers.size();
   for (int i = 0; i < n; ++i) {
     for (int j = i + 1; j < n; ++j) {
-      if (numbers[i] * numbers[j] > result) {
-        result = numbers[i] * numbers[j];
+      if (((long long)numbers[i]) * numbers[j] > result) {
+        result = ((long long)numbers[i]) * numbers[j];
       }
     }
   }
@@ -24,9 +24,9 @@ int main() {
     vector<int> numbers(n);
     for (int i = 0; i < n; ++i) {
         cin >> numbers[i];
-    }
+    } 
 
-    int result = MaxPairwiseProduct(numbers);
+    long long result = MaxPairwiseProduct(numbers);
     cout << result << "\n";
     return 0;
 }
