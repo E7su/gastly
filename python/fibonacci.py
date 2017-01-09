@@ -9,8 +9,8 @@ def calc_fib(n):
         previous, current = current, previous + current
     return current
 
-
-f = list()
+r
 # n = int(input('Input n: '))
 n = int(input())
 print(calc_fib(n))
+r
