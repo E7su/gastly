@@ -1,13 +1,13 @@
 def calc_fib(n):
-    if (n <= 1):
+    if n <= 1:
         return n
 
-    f.insert(0, 0)
-    f.insert(1, 1)
+    previous = 0
+    current = 1
 
-    for i in range(2, n + 1):
-        f.insert(i, f[i - 1] + f[i - 2])
-    return f[i]
+    for i in range(n - 1):
+        previous, current = current, previous + current
+    return current
 
 
 f = list()
