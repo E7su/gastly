@@ -1,16 +1,21 @@
-# Uses python3
+# Uses python2
 import sys
 
 
-def lcm_naive(a, b):
-    for l in range(1, a * b + 1):
-        if l % a == 0 and l % b == 0:
-            return l
+def Euclid_GCD(a, b):
+    if b == 0:
+        return a
 
-    return a * b
+    a = a % b
+    return Euclid_GCD(b, a)
+
+
+def efficient_LCM(a, b):
+    LCM = a * b / Euclid_GCD(a, b)
+    return LCM
 
 
 if __name__ == '__main__':
     input = sys.stdin.read()
     a, b = map(int, input.split())
-    print(lcm_naive(a, b))
+    print(efficient_LCM(a, b))
