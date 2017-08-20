@@ -1,4 +1,4 @@
-#!/usr/local/bin/python
+#!/usr/local/bin/python3
 # -*- coding: utf-8 -*-
 import heapq
 import sys
@@ -47,5 +47,28 @@ def main():
     print("{:.3f}".format(optimal_value))
 
 
+def test():
+    assert fractional_knapsack(0, [(60, 20)]) == 0.0
+    assert fractional_knapsack(25, [(60, 20)]) == 60.0
+    assert fractional_knapsack(25, [(60, 20), (0, 100)]) == 60.0
+    assert fractional_knapsack(25, [(60, 20), (50, 50)]) == 60.0 + 5.0
+
+    assert fractional_knapsack(50, [(60, 20), (100, 50), (120, 30)]) == 180.0
+
+    from random import randint
+    from timing import timed
+    for attempt in range(100):
+        quantity = randint(1, 1000)
+        capacity = randint(0, 2 * 10 ** 6)
+        values_and_weights = []
+        for i in range(quantity):
+            values_and_weights.append(
+                (randint(0, 2 * 10 ** 6), randint(1, 2 * 10 ** 6)))
+
+        t = timed(fractional_knapsack, capacity, values_and_weights)
+        assert t < 5
+
+
 if __name__ == "__main__":
     main()
+    # test()
