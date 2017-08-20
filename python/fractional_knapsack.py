@@ -23,16 +23,12 @@ def fractional_knapsack(capacity, values_and_weights):
 
     # acc - стоимость рюкзака на данный момент
     acc = 0
-    while order:
+    # пока куча не пуста и в рюкзаке есть место
+    while order and capacity:
         value_per_weight, weight = heapq.heappop(order)
-        # если предмет целиком убирается в рюкзак
-        if weight < capacity:
-            acc += -value_per_weight * weight
-            capacity -= weight
-        else:
-            # если не умещается, то кладём сколько влезет
-            acc += -value_per_weight * capacity
-            break
+        can_take = min(weight, capacity)
+        acc -= value_per_weight * can_take
+        capacity -= can_take
 
     return acc
 
