@@ -1,5 +1,6 @@
 #!/usr/local/bin/python
 # -*- coding: utf-8 -*-
+import heapq
 import sys
 
 """Вычисление оптимальной стоимости вещей в рюкзаке
@@ -17,19 +18,20 @@ def fractional_knapsack(capacity, values_and_weights):
     # value - стоимость предмета
     # weight - вес предмета
     # value / weight - удельная стоимость предмета
-    order = [(value / weight, weight) for value, weight in values_and_weights]
-    order.sort(reverse=True)
+    order = [(-value / weight, weight) for value, weight in values_and_weights]
+    heapq.heapify(order)
 
     # acc - стоимость рюкзака на данный момент
     acc = 0
-    for value_per_weight, weight in order:
+    while order:
+        value_per_weight, weight = heapq.heappop(order)
         # если предмет целиком убирается в рюкзак
         if weight < capacity:
-            acc += value_per_weight * weight
+            acc += -value_per_weight * weight
             capacity -= weight
         else:
             # если не умещается, то кладём сколько влезет
-            acc += value_per_weight * capacity
+            acc += -value_per_weight * capacity
             break
 
     return acc
