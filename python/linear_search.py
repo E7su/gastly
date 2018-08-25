@@ -14,9 +14,11 @@ def set_input():
     print('Pattern: {}\n'.format(pattern))
     return massiv, pattern
 
+
 def linear_match(massiv, pattern):
     print('Linear_match with list comprehension...')
     return [element for element in massiv if element == pattern]
+
 
 def has_element(massiv, pattern):
     print('>>> Has_element method')
@@ -26,9 +28,11 @@ def has_element(massiv, pattern):
     else:
         return False
 
+
 def linear_search(massiv, pattern):
     print('>>> Linear_search with list comprehension')
     return [index for index, element in enumerate(massiv) if element == pattern]
+
 
 def find_element(massiv, pattern):
     print('>>> Find_element method...')
@@ -37,12 +41,13 @@ def find_element(massiv, pattern):
         index = -1
     return index
 
+
 def main():
     massiv, pattern = set_input()
-    
+
     result_has_element = has_element(massiv, pattern)
     print('Result: {}\n'.format(result_has_element))
-    
+
     result_find_element = find_element(massiv, pattern)
     print('Result: {}\n'.format(result_find_element))
 
