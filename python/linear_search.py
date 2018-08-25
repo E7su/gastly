@@ -30,16 +30,25 @@ def has_element(massiv, pattern):
 
 
 def linear_search(massiv, pattern):
-    print('>>> Linear_search with list comprehension')
+    print('Linear_search with list comprehension...')
     return [index for index, element in enumerate(massiv) if element == pattern]
 
 
 def find_element(massiv, pattern):
-    print('>>> Find_element method...')
+    print('>>> Find_element method')
     index = linear_search(massiv, pattern)
     if not index:
         index = -1
     return index
+
+
+def get_max(massiv):
+    print('>>> Get_max method')
+    local_max = None
+    for element in massiv:
+        if element > local_max:
+           local_max = element
+    return local_max
 
 
 def main():
@@ -50,6 +59,9 @@ def main():
 
     result_find_element = find_element(massiv, pattern)
     print('Result: {}\n'.format(result_find_element))
+
+    result_get_max = get_max(massiv)
+    print('Result: {}\n'.format(result_get_max))
 
 
 if __name__ == '__main__':
