@@ -1,13 +1,6 @@
 class BLinkedListIndexException(Exception):
-    def __init__(self, blink, pos):
-        minimum_nodes = pos - blink.lenght + 1
-        Exception.__init__(self, (
-            "Trying to add node to position {0} "
-            "to list with lenght {1}. \n"
-            "List numeration starts with number 0.\n"
-            "Please, add at least {2} nodes "
-            "before adding new node to position {0}.".format(pos, blink.lenght,
-                                                             minimum_nodes)))
+    def __init__(self, message):
+        Exception.__init__(self, message)
 
 
 class Node(object):
@@ -66,7 +59,16 @@ class BLinkedList(object):
             node = Node(value)
             self._add_node_to_current_node(node, current_node)
         else:
-            raise BLinkedListIndexException(self, pos)
+            minimum_nodes = pos - self.lenght + 1
+            message = ("Trying to add node to position {0} "
+                       "to list with lenght {1}. \n"
+                       "List numeration starts with number 0.\n"
+                       "Please, add at least {2} nodes "
+                       "before adding new node "
+                       "to position {0}.").format(pos,
+                                                  self.lenght,
+                                                  minimum_nodes)
+            raise BLinkedListIndexException(message)
 
     def _get_node_by_position(self, pos):
         current_node = self.head
@@ -85,21 +87,35 @@ class BLinkedList(object):
         self.lenght += 1
 
     def delete_node_from_head(self):
-        self.head = self.head.next
-        self.head.previous = None
-        self.lenght -= 1
+        if self.head is None:
+            message = "Trying to delete node from head "
+            "of empty list. \n"
+            "Please, add at least 1 node "
+            "before use this operation."
+            raise BLinkedListIndexException(message)
+        else:
+            self.head = self.head.next
+            self.head.previous = None
+            self.lenght -= 1
 
     def delete_node_from_tail(self):
-        self.tail = self.tail.previous
-        self.tail.next = None
-        self.lenght -= 1
+        if self.head is None:
+            message = "Trying to delete node from tail "
+            "of empty list. \n"
+            "Please, add at least 1 node "
+            "before use this operation."
+            raise BLinkedListIndexException(message)
+        else:
+            self.tail = self.tail.previous
+            self.tail.next = None
+            self.lenght -= 1
 
     def delete_node_from_position(self, pos):
         if pos == 0:
             self.delete_node_from_head()
-        elif pos == self.lenght:
+        elif pos + 1 == self.lenght:
             self.delete_node_from_tail()
-        elif pos < self.lenght:
+        elif pos <= self.lenght:
             current_node = self._get_node_by_position(pos)
             current_node.previous.next = current_node.next
             current_node.next.previous = current_node.previous
@@ -157,7 +173,7 @@ def main():
     # [16, 170, 17, 4, 16, 165]
 
     print('-' * 80)
-    blink.add_node(155, 7)
+    blink.add_node(155, 6)
     blink.pprint()
     # [16, 170, 17, 4, 16, 165, 155]
 
@@ -181,20 +197,20 @@ def main():
     blink.pprint()
     # [170, 17, 34, 16, 165]
 
-    print('=' * 80)
-    blink = BLinkedList()
+    print('-' * 80)
+    blink.delete_node_from_position(2)
     blink.pprint()
+    # [170, 17, 16, 165]
 
-    # print('=' * 80)
-    # blink.add_node(value=12, pos=7)
-    # print(blink.head.value)
-    # print(blink.tail.value)
-    # print(blink.lenght)
-    # blink.pprint()
-
-    print('=' * 80)
+    print('-' * 80)
     blink.add_node(value=12, pos=0)
     blink.pprint()
+    # [12, 170, 17, 16, 165]
+
+    print('-' * 80)
+    blink.delete_node_from_position(pos=4)
+    blink.pprint()
+    # [12, 170, 17, 16]
 
 
 if __name__ == '__main__':
