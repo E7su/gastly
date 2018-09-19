@@ -5,10 +5,12 @@ from collections import Counter, namedtuple
 
 
 class Node(namedtuple("Node", ["left", "right"])):
-    # acc - префикс кода, который мы накопили, спускаясь от корня до данного узла или листа
+    # acc - префикс кода, который мы накопили,
+    # спускаясь от корня до данного узла или листа
     def walk(self, code, acc):
         self.left.walk(code, acc + "0")
         self.right.walk(code, acc + "1")
+
 
 class Leaf(namedtuple("Leaf", ["char"])):
     def walk(self, code, acc):
@@ -32,7 +34,8 @@ def huffman_encode(str):
         min_freq1, _count1, left = heapq.heappop(queue)
         # и следующий за ним элемент с минимальной частотой
         min_freq2, _count2, right = heapq.heappop(queue)
-        heapq.heappush(queue, (min_freq1 + min_freq2, count, Node(left, right)))
+        heapq.heappush(queue,
+                       (min_freq1 + min_freq2, count, Node(left, right)))
         count += 1
 
     code = {}

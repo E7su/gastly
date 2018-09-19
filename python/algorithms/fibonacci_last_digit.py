@@ -1,5 +1,6 @@
 import sys
 
+
 def get_fibonacci_last_digit_efficient(n):
     if n <= 1:
         return n
