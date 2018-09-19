@@ -2,7 +2,7 @@ import unittest
 import blink
 
 
-class TestStringMethods(unittest.TestCase):
+class TestBlink(unittest.TestCase):
 
     def test_new_blink(self):
         blink_list = blink.BLinkedList()
@@ -288,6 +288,16 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(blink_list.tail.previous.previous.value, 4)
         self.assertEqual(blink_list.tail.next, None)
         self.assertEqual(blink_list.lenght, 3)
+
+    def test_blink_len(self):
+        blink_list = blink.BLinkedList()
+        blink_list.add_node_to_head(value=-1214)
+        blink_list.add_node_to_head(value=73)
+        blink_list.add_node_to_head(value=0)
+        blink_list.add_node_to_head(value=4)
+        blink_list.delete_node_from_position(3)
+        self.assertEqual(blink_list.lenght, 3)
+        self.assertEqual(len(blink_list), 3)
 
     if __name__ == '__main__':
         unittest.main()

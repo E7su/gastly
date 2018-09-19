@@ -16,6 +16,9 @@ class BLinkedList(object):
         self.tail = tail
         self.lenght = 0
 
+    def __len__(self):
+        return self.lenght
+
     def is_empty(self):
         return self.head is None
 
