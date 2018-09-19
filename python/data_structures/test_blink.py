@@ -79,7 +79,7 @@ class TestStringMethods(unittest.TestCase):
 
     def test_add_node_to_first_position(self):
         blink_list = blink.BLinkedList()
-        blink_list.add_node(value=1, pos=1)
+        blink_list.add_node(value=1, pos=0)
         self.assertEqual(blink_list.head.value, 1)
         self.assertEqual(blink_list.tail.value, 1)
         self.assertEqual(blink_list.head.previous, None)
