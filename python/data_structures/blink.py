@@ -98,8 +98,13 @@ class BLinkedList(object):
             raise BLinkedListIndexException(message)
         else:
             self.head = self.head.next
-            self.head.previous = None
-            self.lenght -= 1
+            try:
+                self.head.previous = None
+            except AttributeError:  # TODO: think about it
+                self.head = None
+                self.tail = None
+            finally:
+                self.lenght -= 1
 
     def delete_node_from_tail(self):
         if self.head is None:
@@ -110,8 +115,13 @@ class BLinkedList(object):
             raise BLinkedListIndexException(message)
         else:
             self.tail = self.tail.previous
-            self.tail.next = None
-            self.lenght -= 1
+            try:
+                self.tail.next = None
+            except AttributeError:  # TODO: think about it
+                self.head = None
+                self.tail = None
+            finally:
+                self.lenght -= 1
 
     def delete_node_from_position(self, pos):
         if pos == 0:
