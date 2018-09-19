@@ -1,5 +1,5 @@
 # Growlithe
-[![Build Status](https://travis-ci.org/E7su/growlithe.svg?branch=master)](https://travis-ci.org/E7su/growlithe.svg?branch=master)
+[![Build Status](https://travis-ci.org/E7su/growlithe.svg?branch=master)](https://travis-ci.org/E7su/growlithe)
 ```
                                      _,
                                    .',_..,
