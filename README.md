@@ -1,5 +1,6 @@
 # Growlithe
 [![Build Status](https://travis-ci.org/E7su/growlithe.svg?branch=master)](https://travis-ci.org/E7su/growlithe)
+[![BCH compliance](https://bettercodehub.com/edge/badge/E7su/growlithe?branch=master)](https://bettercodehub.com/)
 ```
                                      _,
                                    .',_..,
