@@ -2,7 +2,7 @@ import unittest
 import blink
 
 
-class TestStringMethods(unittest.TestCase):
+class TestBlink(unittest.TestCase):
 
     def test_new_blink(self):
         blink_list = blink.BLinkedList()
@@ -24,7 +24,6 @@ class TestStringMethods(unittest.TestCase):
         blink_list = blink.BLinkedList()
         blink_list.head = 4
         blink_list.lenght = 1
-        self.assertEqual(blink_list.is_empty(), False)
         self.assertEqual(blink_list.is_empty(), False)
 
     def test_add_node_to_empty(self):
@@ -92,7 +91,9 @@ class TestStringMethods(unittest.TestCase):
         blink_list.add_node(value=2, pos=1)
         blink_list.add_node(value=3, pos=2)
         self.assertEqual(blink_list.head.value, 1)
+        self.assertEqual(blink_list.head.next.value, 2)
         self.assertEqual(blink_list.tail.value, 3)
+        self.assertEqual(blink_list.tail.previous.value, 2)
         self.assertEqual(blink_list.head.previous, None)
         self.assertEqual(blink_list.tail.next, None)
         self.assertEqual(blink_list.lenght, 3)
@@ -213,6 +214,25 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(blink_list.head, None)
         self.assertEqual(blink_list.tail, None)
 
+    def test_delete_all_nodes_from_head(self):
+        blink_list = blink.BLinkedList()
+        blink_list.add_node_to_head(value=-4)
+        blink_list.add_node_to_head(value=4)
+        blink_list.delete_node_from_head()
+        self.assertEqual(blink_list.head.value, -4)
+        self.assertEqual(blink_list.tail.value, -4)
+        self.assertEqual(blink_list.head.next, None)
+        self.assertEqual(blink_list.head.previous, None)
+        self.assertEqual(blink_list.tail.next, None)
+        self.assertEqual(blink_list.tail.previous, None)
+        self.assertEqual(blink_list.lenght, 1)
+
+        blink_list.delete_node_from_head()
+        self.assertEqual(blink_list.head, None)
+        self.assertEqual(blink_list.tail, None)
+        self.assertEqual(blink_list.lenght, 0)
+        self.assertEqual(blink_list.is_empty(), True)
+
     def test_delete_node_from_tail(self):
         blink_list = blink.BLinkedList()
         blink_list.add_node_to_head(value=1214)
@@ -237,6 +257,25 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(blink_list.lenght, 0)
         self.assertEqual(blink_list.head, None)
         self.assertEqual(blink_list.tail, None)
+
+    def test_delete_all_nodes_from_tail(self):
+        blink_list = blink.BLinkedList()
+        blink_list.add_node_to_head(value=-4)
+        blink_list.add_node_to_head(value=4)
+        blink_list.delete_node_from_tail()
+        self.assertEqual(blink_list.head.value, 4)
+        self.assertEqual(blink_list.tail.value, 4)
+        self.assertEqual(blink_list.head.next, None)
+        self.assertEqual(blink_list.head.previous, None)
+        self.assertEqual(blink_list.tail.next, None)
+        self.assertEqual(blink_list.tail.previous, None)
+        self.assertEqual(blink_list.lenght, 1)
+
+        blink_list.delete_node_from_tail()
+        self.assertEqual(blink_list.head, None)
+        self.assertEqual(blink_list.tail, None)
+        self.assertEqual(blink_list.lenght, 0)
+        self.assertEqual(blink_list.is_empty(), True)
 
     def test_delete_node_from_position(self):
         blink_list = blink.BLinkedList()
@@ -289,5 +328,16 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(blink_list.tail.next, None)
         self.assertEqual(blink_list.lenght, 3)
 
-    if __name__ == '__main__':
-        unittest.main()
+    def test_blink_len(self):
+        blink_list = blink.BLinkedList()
+        blink_list.add_node_to_head(value=-1214)
+        blink_list.add_node_to_head(value=73)
+        blink_list.add_node_to_head(value=0)
+        blink_list.add_node_to_head(value=4)
+        blink_list.delete_node_from_position(3)
+        self.assertEqual(blink_list.lenght, 3)
+        self.assertEqual(len(blink_list), 3)
+
+
+if __name__ == '__main__':
+    unittest.main()

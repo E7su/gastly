@@ -1,5 +1,6 @@
 # import sys  # for another input
 
+
 def set_input():
     # massiv = [5, 5, 5, 7, 6, 4, 5, 5, 5]
     # pattern = 7
@@ -31,7 +32,8 @@ def has_element(massiv, pattern):
 
 def linear_search(massiv, pattern):
     print('Linear_search with list comprehension...')
-    return [index for index, element in enumerate(massiv) if element == pattern]
+    return [index for index, element in enumerate(massiv)
+            if element == pattern]
 
 
 def find_element(massiv, pattern):
@@ -47,7 +49,7 @@ def get_max(massiv):
     local_max = None
     for element in massiv:
         if element > local_max:
-           local_max = element
+            local_max = element
     return local_max
 
 
