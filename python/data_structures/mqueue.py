@@ -48,10 +48,10 @@ class SuperMassiveCircleQueue:
             self._put_if_first(value)
         elif self.is_full():
             raise IndexError
-        elif self.capacity == self.tail + 1:
-            self._put_to_old_redundant_nodes(value)
         else:
-            self.tail += 1
+            next_tail = self.tail + 1
+            next_free_node_in_massive = next_tail % self.capacity
+            self.tail = next_free_node_in_massive
             self.massive[self.tail] = value
             self.lenght += 1
 
@@ -59,11 +59,6 @@ class SuperMassiveCircleQueue:
         self.head = 0
         self.tail = 0
         self.massive[self.head] = value
-        self.massive[self.tail] = value
-        self.lenght += 1
-
-    def _put_to_old_redundant_nodes(self, value):
-        self.tail = 0
         self.massive[self.tail] = value
         self.lenght += 1
 
