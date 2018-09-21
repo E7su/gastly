@@ -30,11 +30,10 @@ class SuperMassiveCircleQueue:
                                              fullness)
 
     def print_fullness(self):
-        if self.lenght >= 0:
-            fullness = '{filled}/{capacity}'.format(filled=self.lenght,
-                                                    capacity=self.capacity)
-        else:
+        if self.lenght < 0:
             raise ValueError
+        fullness = '{filled}/{capacity}'.format(filled=self.lenght,
+                                                capacity=self.capacity)
         return fullness
 
     def is_empty(self):
