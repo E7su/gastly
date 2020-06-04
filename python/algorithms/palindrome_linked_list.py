@@ -10,27 +10,23 @@ class Solution:
         
         slow, fast = self.findMiddle(head)
         previous, current = self.reverseSecondPart(slow)
-
-        # compare the front and back of the list
-        reverse = previous
-        forward = head
-        while reverse and forward:
-            if forward.val != reverse.val:
-                return False
-            reverse = reverse.next
-            forward = forward.next      
-        return True
+        is_equal = self.compareFrontAndBack(previous, head)
+        return is_equal
     
+    """
+    Find the middle of the list
+    """
     def findMiddle(self, head: ListNode):
-        # find the middle of the list
         slow = fast = head
         while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
         return slow, fast
     
+    """
+    Reverse second part of the list
+    """
     def reverseSecondPart(self, slow):
-        # reverse second part of the list
         previous = slow
         current = slow.next
         previous.next = None
@@ -40,3 +36,16 @@ class Solution:
             previous = current
             current = tmp_next
         return previous, current
+
+    """
+    Compare the front and back of the list
+    """
+    def compareFrontAndBack(self, previous, head):
+        reverse = previous
+        forward = head
+        while reverse and forward:
+            if forward.val != reverse.val:
+                return False
+            reverse = reverse.next
+            forward = forward.next      
+        return True
