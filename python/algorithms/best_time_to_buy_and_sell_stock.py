@@ -6,9 +6,9 @@ class Solution(object):
         """
         minprice = float('inf')
         maxprofit = 0
-        for i in range(len(prices)):
-            if prices[i] < minprice:
-                minprice = prices[i]
+        for cur_price in prices:
+            if cur_price < minprice:
+                minprice = cur_price
             else:
-                maxprofit = max(maxprofit, prices[i] - minprice)
+                maxprofit = max(maxprofit, cur_price - minprice)
         return maxprofit
